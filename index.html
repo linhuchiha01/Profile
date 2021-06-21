@@ -597,9 +597,7 @@
                         </div>
                     </div>
                     <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-                        <form
-                            action="https://script.google.com/macros/s/AKfycbw4D-B1lgDP01CDa1gGQgCCEP3VFEC61nFw5ID2GhMMg8S38faQPGrOWgtsXy03Lfd8/exec"
-                            method="GET" role="form" class="php-email-form">
+                        <form method="GET" role="form" class="php-email-form" id="test-form">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="name">Your Name</label>
@@ -663,7 +661,22 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script>
+        var $form = $('#test-form'),
+            url = 'https://script.google.com/macros/s/AKfycbwP7N-cBVQ7Wc_WhMbJ03OtbWDN8Jj5SFrKOvnUphGiUrB0LxRr_mYzUXqofODZ4aqh/exec'
 
+        $('#submit-form').on('click', function (e) {
+            e.preventDefault();
+            var jqxhr = $.ajax({
+                url: url,
+                method: "GET",
+                dataType: "json",
+                data: $form.serializeObject()
+            }).success(
+                // do something
+            );
+        })
+    </script>
 </body>
 
 </html>
